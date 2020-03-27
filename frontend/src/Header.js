@@ -7,3 +7,5 @@ export default function Header({ children }){
         </header>
     );
 }
+
+// COMPONTES PRECISAM SER SALVOS COM LETRA MAIUSCULA

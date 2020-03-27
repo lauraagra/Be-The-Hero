@@ -1,5 +1,6 @@
 const express = require('express'); // importando algo
 const cors = require('cors');
+const { errors } = require('celebrate');
 const routes = require('./routes');
 
 const app = express(); // criando aplicação (vai ter rotas e funcionalidades)
@@ -7,13 +8,14 @@ const app = express(); // criando aplicação (vai ter rotas e funcionalidades)
 app.use(cors()); // quem pode acessar o backend
 app.use(express.json()); // antes de todas as requisições, ir no corpo da requisição e converter json em objeto
 app.use(routes);
+app.use(errors());
 
 // rota / recurso
 
 /* 
  *Métodos HTTP:
  *
- * GET Buscar/listarget uma informação do backend
+ * GET Buscar/listar uma informação do backend
  * POST: Criar uma informação no backend
  * PUT: Alterar uma informação no backend
  * DELETE: Deletar uma informação no backend
@@ -40,5 +42,4 @@ app.use(routes);
  * Query Builder: table('user')
 */
 
-app.listen(3333); // acessar aplicaçãp atraves da porta 3333(porta 8080 é problematica) - localhost - as portas seguem um padrão
-
+module.exports = app;

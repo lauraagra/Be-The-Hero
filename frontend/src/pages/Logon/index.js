@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from 'react'; // ESTADO: trata-se de uma informação a ser mantida pelo componente. Toda vez que o estado é alterado, o componente faz a renderização novamente exibindo as novas informações em tela.
 import { Link, useHistory } from 'react-router-dom'; // para não recarregar a pagina (troca pelo a) 
 import { FiLogIn } from 'react-icons/fi'; //importar icons
 
