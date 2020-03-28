@@ -1,6 +1,7 @@
  import React, { useState, useEffect } from 'react'; // rfc
  import { Link, useHistory } from 'react-router-dom';
  import { FiPower, FiTrash2 } from 'react-icons/fi';
+ import { toast } from 'react-toastify';
  
 import api from '../../services/api';
 
@@ -35,8 +36,13 @@ import api from '../../services/api';
       });
 
       setIncidents(incidents.filter(incident => incident.id !== id)); // para manter apenas os que for diferente do que deletei
+      toast.success(`O caso foi deletado.`, {
+        position: toast.POSITION.TOP_CENTER
+      });
     } catch (err) {
-      alert('Erro ao tentar deletar caso.')
+      toast.error('Erro ao tentar deletar caso.', {
+        position: toast.POSITION.TOP_CENTER
+      });
     }
   }
 
@@ -50,7 +56,7 @@ import api from '../../services/api';
      <div className="profile-container">
          <header>
              <img src={logoImg} alt="Be The Hero" />
-             <span>Bem vinda, {ongName}</span>
+             <span>Bem vinda, <b>{ongName}</b></span>
 
              <Link className="button" to="/incidents/new"> Cadastrar novo caso </Link>
              <button onClick={handleLogout} type="button">

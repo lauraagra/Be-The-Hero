@@ -1,6 +1,7 @@
  import React, { useState } from 'react';
  import { Link, useHistory } from 'react-router-dom';
  import { FiArrowLeft } from 'react-icons/fi';
+ import { toast } from 'react-toastify';
 
  import api from '../../services/api';
  
@@ -32,11 +33,16 @@
                 headers: {
                     Authorization: ongId,
                 }
-            })
+            });
+            toast.success(`O caso foi criado.`, {
+                position: toast.POSITION.TOP_CENTER
+            });
 
             history.push('/profile');
         } catch (err) {
-            alert('Erro ao cadastrar, tente novamente.')
+            toast.error('Erro ao cadastrar, tente novamente.', {
+                position: toast.POSITION.TOP_CENTER
+            });
         }
     }
 

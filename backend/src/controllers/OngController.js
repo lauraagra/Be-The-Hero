@@ -11,7 +11,7 @@ module.exports = {
     async create(request, response){
         const { name, email, whatsapp, city, uf} = request.body;
 
-    const id = generateUniqueId(); // gerar id auomatico em hexadecimal
+    const id = generateUniqueId(); // gerar id automatico em hexadecimal
 
     await connection('ongs').insert({
         id,

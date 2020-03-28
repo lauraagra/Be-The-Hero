@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { FiArrowLeft } from 'react-icons/fi';
+import { toast } from 'react-toastify';
 
 import api from '../../services/api';
 import './styles.css'
@@ -30,11 +31,15 @@ export default function Register(){
         try {
             const response = await api.post('ongs', data);
 
-            alert(`Seu ID de acesso: ${response.data.id}`);
+            toast.success(`Seu ID de acesso: ${response.data.id}`, {
+                position: toast.POSITION.TOP_CENTER
+            });
 
             history.push('/'); // volta para inicio
         } catch(err) {
-            alert('Erro no cadastro, tente novamente.')
+            toast.error('Erro no cadastro, tente novamente.', {
+                position: toast.POSITION.TOP_CENTER
+            })
         }
     }
 
@@ -47,7 +52,7 @@ export default function Register(){
                     <h1>Cadastro</h1>
                     <p>Faça seu cadastro, entre na plataforma e ajude pessoas a encontrarem os casos das sua ONG.</p>
 
-                    <Link className="back-link" to="/"><FiArrowLeft size={16} color="#e02041" /> Não tenho cadastro </Link>
+                    <Link className="back-link" to="/"><FiArrowLeft size={16} color="#e02041" /> Fazer logon </Link>
                 </section>
 
                 <form onSubmit={handleRegister}>

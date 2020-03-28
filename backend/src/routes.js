@@ -17,7 +17,7 @@ routes.post('/ongs', celebrate({
     [Segments.BODY]: Joi.object().keys({ // validação de dados
         name: Joi.string().required(),
         email: Joi.string().required().email(),
-        whatsapp: Joi.string().required().min(10).max(11),
+        whatsapp: Joi.string().required().min(12).max(13),
         city: Joi.string().required(),
         uf: Joi.string().required().length(2),
     })
@@ -29,7 +29,13 @@ routes.get('/profile', celebrate({
     }).unknown(),
 }), ProfileController.index);
 
-routes.post('/incidents', IncidentController.create);
+routes.post('/incidents', celebrate({
+    [Segments.BODY]: Joi.object({
+        title: Joi.string().required(),
+        description: Joi.string().required().max(300),
+        value: Joi.number().required(),
+    })
+}), IncidentController.create);
 
 routes.get('/incidents', celebrate({
     [Segments.QUERY]: Joi.object().keys({

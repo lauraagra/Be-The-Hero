@@ -1,6 +1,7 @@
 import React, { useState } from 'react'; // ESTADO: trata-se de uma informação a ser mantida pelo componente. Toda vez que o estado é alterado, o componente faz a renderização novamente exibindo as novas informações em tela.
 import { Link, useHistory } from 'react-router-dom'; // para não recarregar a pagina (troca pelo a) 
 import { FiLogIn } from 'react-icons/fi'; //importar icons
+import { toast } from 'react-toastify';
 
 import api from '../../services/api';
 import './styles.css';
@@ -23,7 +24,9 @@ export default function Logon(){
 
             history.push('/profile');
         } catch (err) {
-            alert('Falha no login, tente novamente.');
+            toast.error('Falha no login, tente novamente.', {
+                position: toast.POSITION.TOP_CENTER
+            });
         }
     }
 
